@@ -12,7 +12,7 @@ myvars.yaml:
 .. code-block:: yaml
 
     ---
-    var1: "test",
+    var1: "test"
     var2: "other test"
 
 mytemplate.ini.jinja:
@@ -30,6 +30,12 @@ Output to stdout
 
     $ enshrine myvars.yaml mytemplate.ini.jinja
 
+.. code-block:: ini
+
+    [something]
+    some_thing: test
+    other_thing: other test
+
 Output to a file
 ----------------
 
@@ -45,9 +51,11 @@ defaults.yaml:
 .. code-block:: yaml
 
     ---
-    var1: "default test",
+    var1: "default test"
     var2: "default other test"
     var3: "something else entirely"
+
+mytemplate.ini.jinja:
 
 .. code-block:: ini
 
@@ -59,6 +67,13 @@ defaults.yaml:
 .. code-block:: sh
 
     $ enshrine defaults.yaml myvars.yaml mytemplate.ini.jinja
+
+.. code-block:: ini
+
+    [something]
+    some_thing: test
+    other_thing: other test
+    else: something else entirely
 
 Use some environment variables
 ------------------------------
@@ -75,6 +90,13 @@ envtemplate.ini.jinja:
 .. code-block:: sh
 
     $ MYVAR="test value" enshrine myvars.yaml envmytemplate.ini.jinja
+
+.. code-block:: ini
+
+    [something]
+    some_thing: test
+    other_thing: other test
+    env_thing: test value
 
 Format JSON
 -----------
@@ -105,5 +127,13 @@ json_template.json.jinja:
 .. code-block:: sh
 
     $ enshrine myvars.yaml json_template.json.jinja
+
+.. code-block:: json
+
+    {
+        "json_null": null,
+        "json_list": ["one", "two"],
+        "json_object": {"some": "thing"}
+    }
 
 .. _Jinja: http://jinja.pocoo.org/
