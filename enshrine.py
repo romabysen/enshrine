@@ -12,7 +12,8 @@ def combine_vars(variable_files):
     data = {}
     for f in variable_files:
         v = yaml.load(f)
-        data.update(v)
+        if v:
+            data.update(v)
     return data
 
 
